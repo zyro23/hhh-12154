@@ -16,11 +16,12 @@
 package org.hibernate.bugs;
 
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.testing.junit4.BaseCoreFunctionalTestCase;
 import org.junit.Test;
+
+import static org.junit.Assert.assertNull;
 
 /**
  * This template demonstrates how to develop a test case for Hibernate ORM, using its built-in unit test framework.
@@ -68,12 +69,8 @@ public class ORMUnitTestCase extends BaseCoreFunctionalTestCase {
 
 	// Add your tests, using standard JUnit.
 	@Test
-	public void hhh123Test() throws Exception {
-		// BaseCoreFunctionalTestCase automatically creates the SessionFactory and provides the Session.
-		Session s = openSession();
-		Transaction tx = s.beginTransaction();
-		// Do stuff...
-		tx.commit();
-		s.close();
+	public void hhh12154Test() throws Exception {
+		Session session = sessionFactory().getCurrentSession();
+		assertNull(session);
 	}
 }
